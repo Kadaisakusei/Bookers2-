@@ -9,6 +9,7 @@
     <div class='col-md-8 offset-md-1'>
   		<h2>Book detail</h2>
   		<table class='table'>
+  		 <tbody>
   		  <tr>
           <td><%= link_to(@book.user) do %>
             <%= image_tag @book.user.get_profile_image, size:"100x100" %><br>
@@ -21,7 +22,9 @@
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
            <% end %>
-        </tr></br>
+        </tr>
+       </tbody>
+       <tbody>
         <tr>
           <div>
             <p>コメント件数：<%= @book.post_comments.count %></p>
@@ -40,6 +43,7 @@
             <% end %>
           </div>
         </tr>
+       </tbody>
       </table>
     </div>
   </div>
