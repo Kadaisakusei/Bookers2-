@@ -10,4 +10,6 @@ class Book < ApplicationRecord
     favorites.exists?(user_id: user.id)
    end
 
+  has_many :post_comments, dependent: :destroy
+
 end
