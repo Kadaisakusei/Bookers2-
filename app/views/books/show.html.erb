@@ -23,28 +23,32 @@
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
            <% end %>
         </tr>
-       </tbody>
-       <tbody>
-        <tr>
-          <div>
-            <p>コメント件数：<%= @book.post_comments.count %></p>
+      </tbody>
+    </table>
+    <p>コメント件数：<%= @book.post_comments.count %></p>
+    <table>
+      <tbody>
+
             <% @book.post_comments.each do |post_comment| %>
-              <%= post_comment.user.name %>
-              <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+            <tr>
+              <td><%= post_comment.user.name %></td>
+              <td><%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %></td>
+              <td>
               <% if post_comment.user == current_user %>
-              <%= link_to "削除", book_post_comment_path(post_comment.book, post_comment), method: :delete %>
+                <%= link_to "削除", book_post_comment_path(post_comment.book, post_comment), method: :delete %>
+              <% end %>
+              </td>
+            </tr>
             <% end %>
-            <% end %>
-          </div>
-          <div>
+
+       </tbody>
+      </table>
+           <div>
             <%= form_with model: [@book, @post_comment] do |f| %>
-              <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+              <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", :size=>"60x10" %>
               <%= f.submit "送信する" %>
             <% end %>
           </div>
-        </tr>
-       </tbody>
-      </table>
     </div>
   </div>
 </div>
